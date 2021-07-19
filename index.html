@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Line Burst Animation</title>
+</head>
+<body>
+    <div class="container">
+        <div class="burst">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+    </div>
+
+    <script>
+        function createBurst(){
+            let container= document.querySelector('.container');
+            let burst = document.querySelector('.burst');
+            let lines = document.querySelectorAll('.line');
+
+            burst.style.top = Math.random() * innerHeight + "px";
+            burst.style.left = Math.random() * innerWidth + "px";
+
+            lines.forEach((line =>{
+                const colors = ['#ea4335','#34a853','#4385f4','#fbbc05','#dc18b9','#ff5a00','#8621f8','#ffff1b'];
+
+                const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                line.style.background = randomColor;
+            }))
+
+            let burstClone = burst.cloneNode(true);
+            container.appendChild(burstClone);
+
+            setTimeout(()=>{
+                burstClone.remove();
+            },5000)
+        }
+        setInterval(createBurst,100);
+    </script>
+</body>
+</html>
